@@ -5,7 +5,7 @@ class DirectusService {
     this.directus = new Directus(process.env.OPENMESH_DIRECTUS_URL, {
       auth: { staticToken: process.env.OPENMESH_DIRECTUS_TOKEN },
     });
-    this.openmeshService = this.directus.items('openmesh'),
+    this.openmeshService = this.directus.items('openmesh' && 'medidor');
     this.canalService = this.directus.items('canal');
     this.correspondenciaService = this.directus.items('correspondencia');
     
@@ -17,6 +17,10 @@ class DirectusService {
         'nome',
         'rotulo',
         'status',
+        'medidor.nome',
+        'openmesh.nome',
+        'medidor.rotulo',
+        'medidor.status'
         
         
       ],
@@ -55,28 +59,7 @@ class DirectusService {
       limit: 5,
     });
   }
-
-  ligarOpenmeshPorNome(texto) {
-    this.openmeshService.createMany();
-    return this.openmeshService.createMany({
-      fields: [
-        'status', 
-        'remetente',
-        'destinatario',
-        'destinatario',
-        'destinatario',
-        'destinatario',
-        'destinatario',
-        'destinatario',
-        'destinatario',
-        
   
-  
-      ],
-      filter: { _and: [{ nome_social: { _icontains: texto } }] },
-      limit: 10,
-    });
-  }
 }
 
 module.exports = { DirectusService };

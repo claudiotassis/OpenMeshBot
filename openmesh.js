@@ -71,7 +71,8 @@ function openmesh(bot) {
       const actionExibirDetalhesOpenmesh = async (
         ctx,
         bot,
-        openmesh
+        openmesh,
+        
       ) => {
         console.log(openmesh);
         ctx.session.openmesh = openmesh;
@@ -86,7 +87,11 @@ function openmesh(bot) {
               openmesh.nome +
               "\n" +
               "🏷Rótulo: " +
-              openmesh.rotulo  
+              openmesh.rotulo +
+              "\n" +
+              "OpenMesh: " +
+              openmesh.openmesh.nome 
+              
           );
             // Confirmar busca do aparelho
           let openmeshEscolhido = `O OpenMesh buscado está correto?`;          
