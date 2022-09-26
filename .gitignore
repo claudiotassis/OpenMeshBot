@@ -1,0 +1,5 @@
+knex-logs
+docker-files
+uploads
+node_modules
+.env

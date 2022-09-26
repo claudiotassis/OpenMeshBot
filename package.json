@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@directus/sdk": "github:directus/sdk",
+    "node": "^18.9.1",
+    "telegraf": "^4.9.2"
+  }
+}
