@@ -17,8 +17,10 @@ class DirectusService {
         'nome',
         'rotulo',
         'status',
-        'medidor.nome',
         'openmesh.nome',
+        'openmesh.rotulo',
+        'openmesh.status',
+        'medidor.nome',        
         'medidor.rotulo',
         'medidor.status'
         

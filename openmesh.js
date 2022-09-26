@@ -78,19 +78,26 @@ function openmesh(bot) {
         ctx.session.openmesh = openmesh;
         try {
           bot.telegram.sendMessage(
-            ctx.chat.id,
+            ctx.chat.id,            
             "\n" +
-              "🚦status: " +
-              openmesh.status +
+              "🖲Nome do OpenMesh: " +
+              openmesh.openmesh.nome +
               "\n" +
-              "📟Nome: " +
+              "📴Status do OpenMesh: " +
+              openmesh.openmesh.status +
+              "\n" +
+              "🔖Rótulo do OpenMesh: " +
+              openmesh.openmesh.rotulo +              
+              "\n" +
+              "📟Nome do Medidor: " +
               openmesh.nome +
               "\n" +
-              "🏷Rótulo: " +
-              openmesh.rotulo +
+              "🚦Status do Medidor: " +
+              openmesh.status +
               "\n" +
-              "OpenMesh: " +
-              openmesh.openmesh.nome 
+              "🏷Rótulo do Medidor: " +
+              openmesh.rotulo 
+              
               
           );
             // Confirmar busca do aparelho
