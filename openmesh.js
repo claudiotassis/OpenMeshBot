@@ -128,40 +128,7 @@ function openmesh(bot) {
     
   });
 
-  /* Listar OpenMesh Ligados.
-  const listarOpenmeshes = async (ctx, bot) => {
-    const openmesh = ctx.session.openmesh;
-    console.log(openmesh.nome);
-    try {
-      bot.telegram.sendMessage(
-        ctx.chat.id,
-        "\n" +
-          "⚠Situação: " +
-          profissional.plantoes.status +
-          "\n" +
-          "🆔ID: " +
-          profissional.plantoes.id +
-          "\n" +
-          "👩‍⚕Profissional: " +
-          profissional.plantoes.profissional.nome_social +
-          "\n" +
-          "♿Paciente: " +
-          profissional.plantoes.paciente.nome_social +
-          "\n" +
-          "⏳Data/Hora Inicial: " +
-          profissional.plantoes.inicio +
-          "\n" +
-          "⌛Data/Hora Final: " +
-          profissional.plantoes.termino +
-          "\n" +
-          "📝Descrição: " +
-          profissional.plantoes.descricao
-      );
-    } catch (err) {
-      ctx.reply("Encontramos um erro. Tente novamente.");
-    }
-  };*/
-
+  
   // Menu de Opções OpenMesh Encontrado.
   bot.action("opcoes_openmesh", (ctx) => {
     console.log(ctx.from);
@@ -174,12 +141,12 @@ function openmesh(bot) {
         inline_keyboard: [
           [
             {
-              text: "Ligar",
-              callback_data: "ligar_openmesh",
+              text: "Ligar Medidor",
+              callback_data: "ligar_medidor",
             },
             {
-              text: "Desligar",
-              callback_data: "desligar_openmesh",
+              text: "Cortar Medidor",
+              callback_data: "desligar_medidor",
             },
           ],
           [
@@ -207,14 +174,21 @@ function openmesh(bot) {
     });
   });
 
-  // Ligar OpenMesh Selecionado.
-  bot.action("ligar_openmesh", (ctx) => {
+  // Comando Ligar.
+  bot.action("ligar_medidor", (ctx) => {
     bot.telegram.sendMessage(
       ctx.chat.id,
-      "Informe o período que o PROFISSIONAL estará indisponível:"
+      "Informe o Nome do MEDIDOR a ser ligado:"
     );
   });
 
+  // Comando Cortar.
+  bot.action("cortar_medidor", (ctx) => {
+    bot.telegram.sendMessage(
+      ctx.chat.id,
+      "Informe o Nome do MEDIDOR a ser cortado:"
+    );
+  });
 
 
 
