@@ -1,4 +1,4 @@
-const openmesh = require("./openmesh.js");
+const medidor = require("./medidor.js");
 const Telegraf = require("telegraf");
 const { Directus } = require("@directus/sdk");
 const session = require("telegraf/session");
@@ -23,8 +23,8 @@ bot.start((content) => {
     content.reply(`Olá, ${from.first_name}!`);
     content.reply("Selecione no MENU a opção desejada:");
 
-    //OpenMesh
-    openmesh.openmesh(bot);
+    //Medidor
+    medidor.medidor(bot);
 
     // Canal
     //paciente.paciente(bot);

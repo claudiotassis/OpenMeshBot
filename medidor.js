@@ -8,26 +8,22 @@ class Dados {
 let dados = new Dados();
 
 // OpenMesh
-function openmesh(bot) {
-  bot.hears("/openmesh", (ctx) => {
+function medidor(bot) {
+  bot.hears("/medidor", (ctx) => {
     console.log(ctx.from);
-    let openmeshMensagem = `Ok. O que deseja fazer na categoria OPENMESH?`;
+    let medidorMensagem = `Ok. O que deseja fazer na categoria MEDIDOR?`;
     ctx.deleteMessage();
-    bot.telegram.sendMessage(ctx.chat.id, openmeshMensagem, {
+    bot.telegram.sendMessage(ctx.chat.id, medidorMensagem, {
       reply_markup: {
         inline_keyboard: [
           [
             {
-              text: "Consultar Aparelho(s)",
-              callback_data: "consultar_openmesh",
+              text: "Consultar Medidor",
+              callback_data: "consultar_medidor",
             },
             {
-              text: "Listar Aparelho(s) Ligados",
-              callback_data: "listar_openmesh_ligados",
-            },
-            {
-              text: "Cadastrar Aparelho(s)",
-              callback_data: "cadastrar_openmesh",
+              text: "Cadastrar Medidor",
+              callback_data: "cadastrar_medidor",
             },
           ],
         ],
@@ -35,26 +31,26 @@ function openmesh(bot) {
     });
 
     //Consultar Aparelho
-    bot.action("consultar_openmesh", (ctx) => {
+    bot.action("consultar_medidor", (ctx) => {
       bot.telegram.sendMessage(
         ctx.chat.id,
-        "Digite o nome do OpenMesh a ser consultado:"
+        "Digite o nome do Medidor a ser consultado:"
       );
 
       bot.on("text", async (ctx) => {
         //Pegar input do usario
-        const openmeshNome = ctx.message.text;
+        const medidorNome = ctx.message.text;
 
         const directusService = new DirectusService();
 
-        const openmeshes = await directusService.listarOpenmeshesPorNome(
-          openmeshNome
+        const medidores = await directusService.listarMedidoresPorNome(
+          medidorNome
         );
 
         const inline_keyboard = [];
-        openmeshes.data.forEach((openmesh) => {
-          let texto = openmesh.nome;
-          bot.action(texto,  (ctx) => actionExibirDetalhesOpenmesh(ctx, bot, openmesh)
+        medidores.data.forEach((medidor) => {
+          let texto = medidor.nome;
+          bot.action(texto,  (ctx) => actionExibirDetalhesMedidor(ctx, bot, medidor)
           );
 
           inline_keyboard.push({
@@ -68,51 +64,51 @@ function openmesh(bot) {
         });
       });
 
-      const actionExibirDetalhesOpenmesh = async (
+      const actionExibirDetalhesMedidor = async (
         ctx,
         bot,
-        openmesh,
+        medidor,
         
       ) => {
-        console.log(openmesh);
-        ctx.session.openmesh = openmesh;
+        console.log(medidor);
+        ctx.session.medidor = medidor;
         try {
           bot.telegram.sendMessage(
             ctx.chat.id,            
             "\n" +
-              "🖲Nome do OpenMesh: " +
-              openmesh.openmesh.nome +
+              "🖲Nome do Medidor: " +
+              medidor.nome +
               "\n" +
-              "📴Status do OpenMesh: " +
-              openmesh.openmesh.status +
+              "📴Status do Medidor: " +
+              medidor.status +
               "\n" +
-              "🔖Rótulo do OpenMesh: " +
-              openmesh.openmesh.rotulo +              
+              "🔖Rótulo do Medidor: " +
+              medidor.rotulo +            
               "\n" +
               "📟Nome do Medidor: " +
-              openmesh.nome +
+              medidor.openmesh.nome +
               "\n" +
               "🚦Status do Medidor: " +
-              openmesh.status +
+              medidor.openmesh.status +
               "\n" +
               "🏷Rótulo do Medidor: " +
-              openmesh.rotulo 
+              medidor.openmesh.rotulo 
               
               
           );
             // Confirmar busca do aparelho
-          let openmeshEscolhido = `O OpenMesh buscado está correto?`;          
-          bot.telegram.sendMessage(ctx.chat.id, openmeshEscolhido, {
+          let medidorEscolhido = `O Medidor buscado está correto?`;          
+          bot.telegram.sendMessage(ctx.chat.id, medidorEscolhido, {
             reply_markup: {
               inline_keyboard: [
                 [
                   {
                     text: "SIM 👍",
-                    callback_data: "opcoes_openmesh",
+                    callback_data: "opcoes_medidor",
                   },
                   {
                     text: "NÃO 👎",
-                    callback_data: "consultar_openmesh",
+                    callback_data: "consultar_medidor",
                   },
                 ],
               ],
@@ -129,14 +125,14 @@ function openmesh(bot) {
   });
 
   
-  // Menu de Opções OpenMesh Encontrado.
-  bot.action("opcoes_openmesh", (ctx) => {
+  // Menu de Opções medidor Encontrado.
+  bot.action("opcoes_medidor", (ctx) => {
     console.log(ctx.from);
-    let openmeshMensagem = `Qual o próximo passo?`;
+    let medidorMensagem = `Qual o próximo passo?`;
     
-    bot.action("listar_Openmeshes", (ctx) => listarOpenmeshes(ctx, bot));
+    bot.action("listar_medidores", (ctx) => listarMedidores(ctx, bot));
 
-    bot.telegram.sendMessage(ctx.chat.id, openmeshMensagem, {
+    bot.telegram.sendMessage(ctx.chat.id, medidorMensagem, {
       reply_markup: {
         inline_keyboard: [
           [
@@ -152,7 +148,7 @@ function openmesh(bot) {
           [
             {
               text: "Outro Comando",
-              callback_data: "comandos_openmesh",
+              callback_data: "comandos_medidor",
             },
             {
               text: "Listar Mensagens Enviadas",
@@ -166,7 +162,7 @@ function openmesh(bot) {
             },
             {
               text: "Nova Busca",
-              callback_data: "consultar_openmesh",
+              callback_data: "consultar_medidor",
             },
           ],
         ],
@@ -200,5 +196,5 @@ function openmesh(bot) {
 }
 
 module.exports = {
-  openmesh,
+  medidor,
 };

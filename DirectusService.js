@@ -5,14 +5,14 @@ class DirectusService {
     this.directus = new Directus(process.env.OPENMESH_DIRECTUS_URL, {
       auth: { staticToken: process.env.OPENMESH_DIRECTUS_TOKEN },
     });
-    this.openmeshService = this.directus.items('openmesh' && 'medidor');
+    this.medidorService = this.directus.items('openmesh' && 'medidor');
     this.canalService = this.directus.items('canal');
     this.correspondenciaService = this.directus.items('correspondencia');
     
   }
 
-  listarOpenmeshesPorNome(texto) {
-    return this.openmeshService.readByQuery({
+  listarMedidoresPorNome(texto) {
+    return this.medidorService.readByQuery({
       fields: [
         'nome',
         'rotulo',
