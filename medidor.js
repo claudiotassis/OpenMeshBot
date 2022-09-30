@@ -1,11 +1,6 @@
 const { Directus } = require("@directus/sdk");
 const { DirectusService } = require("./DirectusService");
-
-class Dados {
-  _nome = "";
-}
-
-let dados = new Dados();
+const { ligar } = require('./comandos/ligar')
 
 // OpenMesh
 function medidor(bot) {
@@ -171,11 +166,8 @@ function medidor(bot) {
   });
 
   // Comando Ligar.
-  bot.action("ligar_medidor", (ctx) => {
-    bot.telegram.sendMessage(
-      ctx.chat.id,
-      "Informe o Nome do MEDIDOR a ser ligado:"
-    );
+  bot.action("ligar_medidor", (ctx) => {bot.telegram.sendMessage(ctx.chat.id,"Informe o Nome do MEDIDOR a ser ligado:");
+    ligar.ligar(bot);
   });
 
   // Comando Cortar.

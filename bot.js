@@ -27,10 +27,10 @@ bot.start((content) => {
     medidor.medidor(bot);
 
     // Canal
-    //paciente.paciente(bot);
+    //(bot);
 
     // Correspondência
-    //cliente.cliente(bot);
+    //(bot);
   } else {
     content.reply(`Usuário não autorizado!`);
   }

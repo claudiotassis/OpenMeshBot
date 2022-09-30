@@ -42,8 +42,8 @@ class DirectusService {
       limit: 5,
     });
   }
-  listarCorrespondenciasPorNome(texto) {
-    return this.correspondenciaService.readByQuery({
+  correspondencias(texto) {
+    return this.correspondenciaService.createMany({
       fields: [
         'canais',
         'rotulo',
