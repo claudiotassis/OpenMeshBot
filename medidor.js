@@ -168,7 +168,7 @@ function medidor(bot) {
   // Comando Cortar.
   bot.action("comando_cortar", () => {
       const directusService = new DirectusService();
-      directusService.cortar(bot)
+      directusService.cortar(medidor)
 
   });
 }
