@@ -1,6 +1,6 @@
 const { Directus } = require("@directus/sdk");
 const { DirectusService } = require("./DirectusService");
-const { ligar } = require('./comandos/ligar')
+const { ligar } = require('./comandos/ligar.js')
 
 // OpenMesh
 function medidor(bot) {
@@ -80,13 +80,13 @@ function medidor(bot) {
               "🔖Rótulo do Medidor: " +
               medidor.rotulo +            
               "\n" +
-              "📟Nome do Medidor: " +
+              "📟Nome do OpenMesh: " +
               medidor.openmesh.nome +
               "\n" +
-              "🚦Status do Medidor: " +
+              "🚦Status do OpenMesh: " +
               medidor.openmesh.status +
               "\n" +
-              "🏷Rótulo do Medidor: " +
+              "🏷Rótulo do OpenMesh: " +
               medidor.openmesh.rotulo 
               
               
@@ -133,11 +133,11 @@ function medidor(bot) {
           [
             {
               text: "Ligar Medidor",
-              callback_data: "ligar_medidor",
+              callback_data: "ligar",
             },
             {
               text: "Cortar Medidor",
-              callback_data: "desligar_medidor",
+              callback_data: "comando_cortar",
             },
           ],
           [
@@ -166,25 +166,18 @@ function medidor(bot) {
   });
 
   // Comando Ligar.
-  bot.action("ligar_medidor", (ctx) => {bot.telegram.sendMessage(ctx.chat.id,"Informe o Nome do MEDIDOR a ser ligado:");
-    ligar.ligar(bot);
+  bot.action("ligar", () => {
+      const directusService = new DirectusService();
+      directusService.ligar()
+
   });
 
   // Comando Cortar.
-  bot.action("cortar_medidor", (ctx) => {
-    bot.telegram.sendMessage(
-      ctx.chat.id,
-      "Informe o Nome do MEDIDOR a ser cortado:"
-    );
+  bot.action("comando_cortar", () => {
+      const directusService = new DirectusService();
+      directusService.cortar()
+
   });
-
-
-
-
-
-
-
-  
 }
 
 module.exports = {
