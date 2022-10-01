@@ -165,15 +165,10 @@ function medidor(bot) {
     });
   });
 
-  // Comando Ligar.
-  bot.action("ligar", () => {
-      const directusService = new DirectusService();
-      directusService.ligar()
-
-  });
+  
 
   // Comando Cortar.
-  bot.action("comando_cortar", () => {
+  bot.action("comando_cortar", async () => {
       const directusService = new DirectusService();
       directusService.cortar()
 
