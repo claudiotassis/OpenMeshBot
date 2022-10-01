@@ -165,12 +165,15 @@ function medidor(bot) {
     });
   });
 
+<<<<<<< HEAD
   
 
+=======
+>>>>>>> 1e483bd2d5845d4ce008daaf4e8861d09dadd9b6
   // Comando Cortar.
   bot.action("comando_cortar", async () => {
       const directusService = new DirectusService();
-      directusService.cortar()
+      directusService.cortar(bot)
 
   });
 }

@@ -8,6 +8,7 @@ class DirectusService {
     this.medidorService = this.directus.items("medidor");
     this.canalService = this.directus.items("canal");
     this.correspondenciaService = this.directus.items("correspondencia");
+    this.cortarService = this.directus.items("comando_cortar");
   }
 
   listarMedidoresPorNome(texto) {
@@ -49,9 +50,17 @@ class DirectusService {
         "20157929000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000E8FC",
     });
   }
+<<<<<<< HEAD
   async cortar() {
     return await this.directus.items("comando_cortar").createOne({
       medidor: "8df898f3-5c15-49ac-ab33-32305582c9d0",
+=======
+  
+
+  cortar(medidorId) {
+    return this.directus.items("comando_cortar").createOne({
+      medidor: medidorId,
+>>>>>>> 1e483bd2d5845d4ce008daaf4e8861d09dadd9b6
     });
   }
 }
