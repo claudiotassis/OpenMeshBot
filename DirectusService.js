@@ -8,6 +8,7 @@ class DirectusService {
     this.medidorService = this.directus.items("medidor");
     this.canalService = this.directus.items("canal");
     this.correspondenciaService = this.directus.items("correspondencia");
+    this.cortarService = this.directus.items("comando_cortar");
   }
 
   listarMedidoresPorNome(texto) {
@@ -49,11 +50,7 @@ class DirectusService {
         "20157929000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000E8FC",
     });
   }
-  ligar(medidorId) {
-    return this.directus.items("ligar").createOne({
-      medidor: medidorId,
-    });
-  }
+  
 
   cortar(medidorId) {
     return this.directus.items("comando_cortar").createOne({
