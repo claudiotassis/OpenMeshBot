@@ -9,6 +9,7 @@ class DirectusService {
     this.canalService = this.directus.items("canal");
     this.correspondenciaService = this.directus.items("correspondencia");
     this.cortarService = this.directus.items("comando_cortar");
+    this.comandoService = this.directus.items("comando_cortar");
   }
 
   
@@ -40,7 +41,7 @@ class DirectusService {
     });
   }
   criarComando(medidorId) {
-    return this.comandoService.createOne({
+    return this.comandoService.createMany({
       
         destinatario: medidorId,
         remetente: "216f4aa5-10cd-4908-9333-807bc795c93a",
