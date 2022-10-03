@@ -71,6 +71,9 @@ function medidor(bot) {
           bot.telegram.sendMessage(
             ctx.chat.id,            
             "\n" +
+              "🆔ID do Medidor: " +
+              medidor.id +
+            "\n" +
               "🖲Nome do Medidor: " +
               medidor.nome +
               "\n" +
@@ -173,6 +176,14 @@ function medidor(bot) {
       directusService.cortar(bot)
 
   });
+
+  let medidorId = medidor.id;
+  // Outros Comandos por Medidor ID.
+  bot.action("comandos_medidor", async () => {
+    const directusService = new DirectusService();
+    directusService.criarCorrespondencia(medidorId)
+
+});
 }
 
 module.exports = {
