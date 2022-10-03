@@ -181,7 +181,7 @@ function medidor(bot) {
   // Outros Comandos por Medidor ID.
   bot.action("comandos_medidor", async () => {
     const directusService = new DirectusService();
-    directusService.criarCorrespondencia(medidorId)
+    directusService.criarComando(medidorId)
 
 });
 }
