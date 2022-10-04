@@ -1,6 +1,6 @@
 const { Directus } = require("@directus/sdk");
 const { DirectusService } = require("./DirectusService");
-const { ligar } = require('./comandos/ligar.js')
+
 
 // OpenMesh
 function medidor(bot) {
