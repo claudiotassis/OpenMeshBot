@@ -9,7 +9,7 @@ class DirectusService {
     this.canalService = this.directus.items("canal");
     this.correspondenciaService = this.directus.items("correspondencia");
     this.cortarService = this.directus.items("comando_cortar");
-    this.comandoService = this.directus.items("comando_cortar");
+    this.comandoService = this.directus.items("comando23");
   }
 
   
@@ -40,8 +40,8 @@ class DirectusService {
       limit: 5,
     });
   }
-  criarComando(medidorId) {
-    return this.comandoService.createMany({
+  enviar(medidorId) {
+    return this.comandoService.createOne({
       
         destinatario: medidorId,
         remetente: "216f4aa5-10cd-4908-9333-807bc795c93a",
@@ -50,6 +50,12 @@ class DirectusService {
     });
   }
 
+  async enviarComando() {
+    return await this.directus.items("comando23").createOne({
+      
+      medidor: "8df898f3-5c15-49ac-ab33-32305582c9d0",
+    });
+  }
   
 
   async cortar() {

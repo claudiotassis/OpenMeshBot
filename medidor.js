@@ -177,11 +177,11 @@ function medidor(bot) {
 
   });
 
-  let medidorId = medidor.id;
+  let medidorId = "medidor.id";
   // Outros Comandos por Medidor ID.
   bot.action("comandos_medidor", async () => {
     const directusService = new DirectusService();
-    directusService.criarComando(medidorId)
+    directusService.enviarComando(medidorId)
 
 });
 }
