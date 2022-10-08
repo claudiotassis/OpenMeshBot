@@ -9,17 +9,22 @@ class DirectusService {
     this.canalService = this.directus.items("canal");
     this.correspondenciaService = this.directus.items("correspondencia");
     this.cortarService = this.directus.items("comando_cortar");
+    this.comandoService = this.directus.items("comando23");
   }
+
+  
 
   listarMedidoresPorNome(texto) {
     return this.medidorService.readByQuery({
       fields: [
+        "id",
         "nome",
         "rotulo",
         "status",
         "openmesh.nome",
         "openmesh.rotulo",
         "openmesh.status",
+        "medidor.id",
         "medidor.nome",
         "medidor.rotulo",
         "medidor.status",
@@ -35,28 +40,30 @@ class DirectusService {
       limit: 5,
     });
   }
-  criarCorrespondencia(novaCorrespondencia) {
-    return this.correspondenciaService.createOne({
-      destinatario: novaCorrespondencia.destinatario,
-      remetente: novaCorrespondencia.remetente,
-      user_updated: null,
-      user_created: "ef428c58-8b11-4c86-bd32-372e914e4dff",
-      data_limite_entrega: null,
-      date_updated: "2022-09-21T20:17:40.502Z",
-      date_created: "2022-09-21T20:17:34.186Z",
-      mensagem_id: "71043151",
-      status: "enviado_recebimento_confirmado",
-      mensagem:
-        "20157929000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000E8FC",
+  enviar(medidorId) {
+    return this.comandoService.createOne({
+      
+        destinatario: medidorId,
+        remetente: "216f4aa5-10cd-4908-9333-807bc795c93a",
+        status: "enviado_aguardando_confirmacao_recebimento",
+        mensagem: "23157929000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000A8AD"
+    });
+  }
+
+  async enviarComando() {
+    return await this.directus.items("comando23").createOne({
+      
+      medidor: "8df898f3-5c15-49ac-ab33-32305582c9d0",
     });
   }
   
 
-  cortar(medidorId) {
-    return this.directus.items("comando_cortar").createOne({
-      medidor: medidorId,
+  async cortar() {
+    return await this.directus.items("comando_cortar").createOne({
+      medidor: "8df898f3-5c15-49ac-ab33-32305582c9d0",
     });
   }
+  
 }
 
 module.exports = { DirectusService };

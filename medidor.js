@@ -1,6 +1,6 @@
 const { Directus } = require("@directus/sdk");
 const { DirectusService } = require("./DirectusService");
-const { ligar } = require('./comandos/ligar.js')
+
 
 // OpenMesh
 function medidor(bot) {
@@ -70,6 +70,9 @@ function medidor(bot) {
         try {
           bot.telegram.sendMessage(
             ctx.chat.id,            
+            "\n" +
+              "🆔ID do Medidor: " +
+              medidor.id +
             "\n" +
               "🖲Nome do Medidor: " +
               medidor.nome +
@@ -165,12 +168,22 @@ function medidor(bot) {
     });
   });
 
+  
+
   // Comando Cortar.
-  bot.action("comando_cortar", () => {
+  bot.action("comando_cortar", async () => {
       const directusService = new DirectusService();
       directusService.cortar(medidor)
 
   });
+
+  let medidorId = "medidor.id";
+  // Outros Comandos por Medidor ID.
+  bot.action("comandos_medidor", async () => {
+    const directusService = new DirectusService();
+    directusService.enviarComando(medidorId)
+
+});
 }
 
 module.exports = {
