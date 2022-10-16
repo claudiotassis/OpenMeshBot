@@ -1,7 +1,23 @@
 {
+  "name": "openmesh-bot",
+  "version": "0.0.1",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js",
+    "start:dev": "nodemon bot.js"
+  },
+  "keywords": [],
+  "author": "Devix Tecnologia",
+  "license": "ISC",
   "dependencies": {
-    "@directus/sdk": "github:directus/sdk",
-    "node": "^18.9.1",
-    "telegraf": "^4.9.2"
+    "@directus/sdk": "^10.1.4",
+    "dotenv": "^16.0.1",
+    "nodemon": "^2.0.19",
+    "telegraf": "3.40.0"
+  },
+  "devDependencies": {
+    "prettier": "2.7.1"
   }
 }
